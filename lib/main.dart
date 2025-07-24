@@ -29,17 +29,19 @@ class ImageHandling extends StatelessWidget {
         width: MediaQuery.of(context).size.width, // Full screen width
         height: MediaQuery.of(context).size.height, // Full screen height
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround, // Spacing between the images
+          mainAxisAlignment:
+              MainAxisAlignment.spaceAround, // Spacing between the images
           children: [
             // ---- Local Asset Image with border radius and shadow ----
             Container(
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3), // Shadow color with transparency
-                    spreadRadius: 4.0,                    // How wide the shadow spreads
-                    blurRadius: 10                        // Blur effect of the shadow
-                  )
+                      color: Colors.black
+                          .withOpacity(0.3), // Shadow color with transparency
+                      spreadRadius: 4.0, // How wide the shadow spreads
+                      blurRadius: 10 // Blur effect of the shadow
+                      )
                 ],
               ),
               child: ClipRRect(
@@ -60,10 +62,10 @@ class ImageHandling extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3), // Shadow for network image
-                    spreadRadius: 4.0,
-                    blurRadius: 10
-                  )
+                      color: Colors.black
+                          .withOpacity(0.3), // Shadow for network image
+                      spreadRadius: 4.0,
+                      blurRadius: 10)
                 ],
               ),
               child: ClipRRect(
@@ -74,21 +76,25 @@ class ImageHandling extends StatelessWidget {
                   width: 300,
                   height: 300,
                   fit: BoxFit.fill, // Image fills the box
-                  
+
                   // Error handling if image fails to load
                   errorBuilder: (context, error, stackTrace) {
-                    return const Column(
-                      children: [
-                        Icon(Icons.broken_image), // Broken image icon
-                        SizedBox(height: 10),
-                        Text("Sorry image not found") // Error message
-                      ],
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Icon(Icons.broken_image), // Broken image icon
+                          SizedBox(height: 10),
+                          Text("Sorry image not found") // Error message
+                        ],
+                      ),
                     );
                   },
 
                   // Shows loading indicator while image is being downloaded
                   loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child; // When image is fully loaded
+                    if (loadingProgress == null)
+                      return child; // When image is fully loaded
                     return const CircularProgressIndicator(
                       color: Colors.blue, // Progress indicator while loading
                     );
